@@ -1,0 +1,185 @@
+timestamp: 2013-03-17T09:38:27.673938
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-03-17T09:38:27.823826
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-03-17T09:38:27.941399
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-03-17T09:38:28.077124
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-03-17T09:38:28.194665
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-03-17T09:38:28.311763
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-03-17T09:40:01.306033
+CREATE TABLE details(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512) NOT NULL,
+    current_year CHAR(512) NOT NULL,
+    cg DOUBLE NOT NULL,
+    college CHAR(512) NOT NULL,
+    branch CHAR(512) NOT NULL
+);
+success!
+timestamp: 2013-03-17T09:58:48.562639
+ALTER TABLE details ADD city CHAR(512);
+timestamp: 2013-03-17T09:58:48.736559
+ALTER TABLE details ADD cstate CHAR(512);
+timestamp: 2013-03-17T09:58:48.846883
+ALTER TABLE details ADD address CHAR(512);
+timestamp: 2013-03-19T18:54:00.451790
+ALTER TABLE details ADD pic CHAR(512);
+timestamp: 2013-03-19T18:55:09.353102
+ALTER TABLE details ADD picture CHAR(512);
+timestamp: 2013-03-20T21:35:04.847903
+CREATE TABLE wiki_page(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    slug CHAR(512),
+    title CHAR(512) UNIQUE,
+    body TEXT NOT NULL,
+    tags TEXT,
+    can_read TEXT,
+    can_edit TEXT,
+    changelog CHAR(512),
+    html TEXT,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-03-20T21:35:05.049810
+CREATE TABLE wiki_tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    wiki_page INTEGER REFERENCES wiki_page (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-03-20T21:35:05.185585
+CREATE TABLE wiki_media(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wiki_page INTEGER REFERENCES wiki_page (id) ON DELETE CASCADE,
+    title CHAR(512),
+    filename CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-03-24T12:19:46.064070
+ALTER TABLE details ADD myid INTEGER;
+timestamp: 2013-03-27T22:45:28.421117
+CREATE TABLE msg(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    msg TEXT NOT NULL,
+    sub TEXT,
+    name CHAR(512) NOT NULL
+);
+success!
+timestamp: 2013-03-31T18:41:09.668016
+ALTER TABLE msg ADD sender INTEGER;
+timestamp: 2013-04-01T20:56:07.299546
+CREATE TABLE project(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    myid INTEGER,
+    name CHAR(512) NOT NULL,
+    org CHAR(512) NOT NULL,
+    mentor CHAR(512),
+    skills_used TEXT
+);
+success!
+timestamp: 2013-04-02T09:03:02.246284
+ALTER TABLE project ADD relevant_links CHAR(512);
+timestamp: 2013-04-02T09:03:02.446235
+ALTER TABLE project ADD project_upload CHAR(512);
+timestamp: 2013-04-04T19:13:32.597289
+CREATE TABLE organisation(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512) NOT NULL,
+    logo CHAR(512) NOT NULL,
+    about TEXT NOT NULL
+);
+success!
+timestamp: 2013-04-04T19:13:32.816938
+CREATE TABLE vacancies(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    post CHAR(512) NOT NULL,
+    description TEXT,
+    requirements CHAR(512),
+    docs CHAR(512),
+    compid INTEGER
+);
+success!
+timestamp: 2013-04-04T22:51:56.000789
+ALTER TABLE organisation ADD myid INTEGER;
+timestamp: 2013-04-04T23:22:24.246089
+ALTER TABLE vacancies ADD myid INTEGER;
+timestamp: 2013-04-08T13:08:32.370428
+CREATE TABLE achievements(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    myid INTEGER,
+    what TEXT
+);
+success!
+timestamp: 2013-04-08T13:24:18.364499
+ALTER TABLE achievements ADD category CHAR(32768);
+timestamp: 2013-04-08T13:26:14.119444
+ALTER TABLE achievements ADD ctg CHAR(32768);
+timestamp: 2013-04-08T13:38:34.756585
+ALTER TABLE project ADD description TEXT NOT NULL;
+timestamp: 2013-04-08T13:43:43.768533
+ALTER TABLE project ADD description TEXT;
+timestamp: 2013-04-14T11:18:24.360170
+ALTER TABLE msg ADD msg_date DATE;
+timestamp: 2013-04-30T15:05:59.327108
+ALTER TABLE msg ADD senderid INTEGER;

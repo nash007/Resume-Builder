@@ -1,0 +1,55 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+{{app=request.application}}
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+{{pass}} <table>
+<tr rowspan=10><img src="{{=URL('static','images/images1.jpeg')}}" style='float:left'>
+</tr>
+    <tr>
+        <td width="970"></td>
+        <td width="110" colspan="2" style="text-align:center"><img src="{{=URL(r=request,f='download',args=t[0].picture)}}" width="190"/></td>
+    </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Name :</td>
+        <td width="110">{{=t[0].name}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">College :</td>
+        <td width="110" style="text-align:left">{{=t[0].college}}</td>
+     </tr>
+     <tr>   
+        <td width="970"></td>
+        <td width="110" style="text-align:right">CGPA :</td>
+        <td width="110">{{=t[0].cg}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Branch :</td>
+        <td width="110">{{=t[0].branch}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Current Year :</td>
+        <td width="110">{{=t[0].current_year}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Address :</td>
+        <td width="110">{{if len(t[0].address) > 0:}}{{=t[0].address}}{{else:}}{{='---'}}{{pass}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">City :</td>
+        <td width="110">{{if len(t[0].city) > 0:}}{{=t[0].city}}{{else:}}{{='---'}}{{pass}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">State :</td>
+        <td width="110">{{if len(t[0].cstate) > 0:}}{{=t[0].cstate}}{{else:}}{{='---'}}{{pass}}</td>
+     </tr>
+</table>
+<!--{{block right_sidebar}}-->
+{{end}}

@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<table align=center>
+    <tr>
+        <td width=150 align=center><b>Subject</b></td>
+        <td width=100><b>Date</b></td>
+        <td width=1000><b>Message</b></td>
+    </tr>
+    {{for i in r:}}
+        <tr>
+            <td width=150>{{=i.sub}}</td>
+            <td width=100>{{=i.msg_date}}</td>
+            <td width=1000>{{=i.msg}}</td>
+        </tr>
+    {{pass}}
+</table>

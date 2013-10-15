@@ -1,0 +1,91 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+{{extend 'layout.html'}}
+
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+
+{{if message == 'Welcome to Resume Builder!!':}}
+{{=A(T("Update Profile"), _href=URL('Resume1','default','edit_student'), _class='btn',
+     _style='margin-top: 1em;')}}
+{{elif message == 'Choose your students!':}}
+{{=A(T("Send Message"), _href=URL('Resume1','default','send_msg'), _class='btn',
+     _style='margin-top: 1em;')}}
+{{pass}}
+
+<table>
+    <tr>
+        <td width="970"></td>
+        <td width="110" colspan="2" style="text-align:center"><img src="{{=URL(r=request,f='download',args=t[0].picture)}}" width="190"/></td>
+        </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Name :</td>
+        <td width="110">{{=t[0].name}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">College :</td>
+        <td width="110" style="text-align:right">{{=t[0].college}}</td>
+     </tr>
+     <tr>   
+        <td width="970"></td>
+        <td width="110" style="text-align:right">CGPA :</td>
+        <td width="110">{{=t[0].cg}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Branch :</td>
+        <td width="110">{{=t[0].branch}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Current Year :</td>
+        <td width="110">{{=t[0].current_year}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">Address :</td>
+        <td width="110">{{=t[0].address}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">City :</td>
+        <td width="110">{{=t[0].city}}</td>
+     </tr>
+	<tr>
+        <td width="970"></td>
+        <td width="110" style="text-align:right">State :</td>
+        <td width="110">{{=t[0].cstate}}</td>
+     </tr>
+</table>
+
+
+<!--<h4>{{=T('How did you get here?')}}</h4>
+<ol>
+  <li>{{=T('You are successfully running web2py')}}</li>
+  <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
+  <li>{{=XML(T('Which called the function %s located in the file %s',
+             (A(request.function+'()',_href='#'),
+              A('web2py/applications/%(application)s/controllers/%(controller)s.py'%request,
+               _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
+  <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
+           A('web2py/applications/%(application)s/views/%(controller)s/index.html'%request,
+           _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
+  <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
+</ol>-->
+<!--{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}-->
+
+{{block right_sidebar}}
+<!--{{=A(T("Administrative Interface"), _href=URL('admin','default','index'), _class='btn',
+     _style='margin-top: 1em;')}}
+<h6>{{=T("Don't know what to do?")}}</h6>
+<ul>
+  <li>{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
+  <li><a href="http://web2py.com">web2py.com</a></li>
+  <li><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
+</ul>-->
+{{end}}
